@@ -29,7 +29,7 @@ module.exports = function(gulp, plugins) {
                 './app/locales/**',
                 './app/.htaccess',
                 './app/*.+(xml|ico|txt|webapp)',
-                './app/styles/**/*.+(eot|svg|ttf|woff)',
+                './app/styles/**/*.+(eot|svg|ttf|woff|css)',
             ], {base: './app'})
             .pipe(gulp.dest('./dist')),
 

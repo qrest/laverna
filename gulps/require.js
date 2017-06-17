@@ -48,6 +48,7 @@ module.exports = function(gulp, plugins) {
             ],
             include        : [
                 // Because settings views are loaded dynamically
+                'apps/settings/show/views/editor',
                 'apps/settings/show/views/encryption',
                 'apps/settings/show/views/general',
                 'apps/settings/show/views/importExport',

@@ -46,7 +46,6 @@ gulp.task('test', ['jsonlint', 'jshint', 'mocha']);
 gulp.task('build', plugins.sequence(
     'test',
     'clean:dist',
-    ['prism', 'less'],
     ['copy', 'require', 'htmlmin', 'cssmin'],
     'htmlManifest'
 ));
@@ -68,6 +67,6 @@ gulp.task('release', plugins.sequence(
  * ``gulp --root dist`` to serve dist folder.
  */
 gulp.task('default', plugins.sequence(
-    ['less', 'prism'],
+    ['prism'],
     ['serve:start', 'serve:watch']
 ));

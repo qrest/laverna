@@ -69,7 +69,12 @@ define([
             // Form
             form       : '.editor--form',
             saveBtn    :  '.editor--save',
-            title      : '#editor--input--title'
+            title      : '#editor--input--title',
+            rmBtn      : '.note--remove'
+        },
+
+        modelEvents: {
+            'change:trash'         : 'render'
         },
 
         events: {
@@ -78,14 +83,19 @@ define([
             // Handle saving
             'submit @ui.form'      : 'save',
             'click @ui.saveBtn'    : 'save',
-            'click .editor--cancel'  : 'cancel'
+            'click .editor--cancel'  : 'cancel',
+            'click .editor--switch'    : 'switch',
+            'click @ui.rmBtn'       : 'rmNote'
         },
 
         initialize: function() {
-            _.bindAll(this, 'autoSave', 'save', 'cancel');
+            _.bindAll(this, 'autoSave', 'save', 'rmNote', 'cancel');
 
             this.configs = Radio.request('configs', 'get:object');
             this.$body = $('body');
+            this.$viewBtn = $('note--edit ');
+
+            Mousetrap.bind(this.configs.actionsRemove, this.rmNote);
 
             // Events and replies
             Radio.channel('notesForm')
@@ -130,11 +140,16 @@ define([
             .off('save:auto');
 
             // Destroy shortcuts
-            Mousetrap.unbind(['ctrl+s', 'command+s', 'esc']);
+            Mousetrap.unbind(['ctrl+s', 'command+s', 'esc', this.configs.actionsRemove]);
         },
 
         showEditor: function(view) {
             this.editor.show(view);
+        },
+
+        rmNote: function() {
+            this.trigger('model:remove');
+            return false;
         },
 
         /**
@@ -171,11 +186,11 @@ define([
             }
 
 			this.options.saveTags = true;
-            this.options.isClosed = true;
-            this.options.redirect = true;
+            this.options.isClosed = false;
+            this.options.redirect = false;
             this.trigger('save');
-
-            return false;
+            
+            //return false;
         },
 
         switchMode: function(e) {
@@ -208,6 +223,15 @@ define([
 
         _normalMode: function() {
             this.$body.removeClass('editor--fullscreen -preview');
+        },
+
+        templateHelpers: function() {
+            return {
+                // Generate link
+                link: function() {
+                    return Radio.request('uri', 'link', this.args, this);
+                }
+            };
         }
     });
 

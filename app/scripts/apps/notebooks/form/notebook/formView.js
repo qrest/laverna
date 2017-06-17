@@ -11,6 +11,7 @@ define([
     'jquery',
     'marionette',
     'behaviors/modalForm',
+    'backbone.radio',
     'models/notebook',
     'text!apps/notebooks/form/notebook/templates/form.html'
 ], function(_, $, Marionette, ModalForm, Notebook, Tmpl) {
@@ -43,6 +44,7 @@ define([
 
         templateHelpers: function() {
             return {
+
                 isParent: function(notebookId) {
                     if (this.parentId === notebookId) {
                         return ' selected="selected"';

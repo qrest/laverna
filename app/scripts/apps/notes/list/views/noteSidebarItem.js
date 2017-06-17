@@ -73,6 +73,11 @@ define([
                     return Radio.request('uri', 'link', this.args, this);
                 },
 
+                editlink: function() {
+                    this.args.edit = true;
+                    return Radio.request('uri', 'link:edit', this);
+                },
+
                 isActive: function() {
                     return this.args.id === this.id ? 'active' : '';
                 }

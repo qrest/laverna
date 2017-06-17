@@ -54,9 +54,8 @@ define([
             });
 
             // Events
-            this.listenTo(Radio.channel('notes'), 'update:model', this.redirect);
-            this.listenTo(Radio.channel('Confirm'), 'confirm', this.redirect);
-            this.listenTo(Radio.channel('Confirm'), 'cancel', this.onConfirmCancel);
+            this.listenTo(Radio.channel('notes'), 'destroy:model', this.onModelDestroy, this);
+            this.listenTo(this.view, 'model:remove', this.modelRemove);
         },
 
         onDestroy: function() {
@@ -70,6 +69,7 @@ define([
 
             // Set document title
             Radio.request('global', 'set:title', note.get('title'));
+            Radio.trigger('appNote', 'model:active', note);
 
             // Use behaviours that are appropriate for a device.
             if (Radio.request('global', 'platform') === 'mobile') {
@@ -108,6 +108,7 @@ define([
             // Listen to view events
             this.listenTo(this.view, 'save', this.save);
             this.listenTo(this.view, 'cancel', this.showConfirm);
+            this.listenTo(this.view, 'model:remove', this.modelRemove);
 
             // Get data before any change is made
             // so that it can be reset when you cancel editing
@@ -139,6 +140,13 @@ define([
             });
         },
 
+        /**
+         * Triggers an event and expects that a model will be destroyed
+         */
+        modelRemove: function() {
+            Radio.request('appNote', 'remove:note', this.view.model.id);
+        },
+
         getContent: function() {
             var self = this;
 
@@ -159,8 +167,14 @@ define([
 
             return this.getContent()
             .then(function(data) {
-                // Redirect if data wasn't changed
-                if (_.isEqual(self.dataBeforeChange, data)) {
+                var model = self.view.model.pick('title', 'content', 'notebookId');
+                data      = _.pick(data, 'title', 'content', 'notebookId');
+
+                // To check if they are equal
+                model.content = _.unescape(model.content);
+                model.title   = _.unescape(model.title);
+
+                if (_.isEqual(model, data)) {
                     return self.redirect();
                 }
 
@@ -207,11 +221,21 @@ define([
             // Rebind keybindings again because TW bootstrap modal overrites ESC.
             this.view.trigger('bind:keys');
             this.view.options.isClosed = false;
+            this.deleteData = false;
 
             if (this.view.options.focus !== 'editor') {
                 return this.view.ui[this.view.options.focus].focus();
             }
             Radio.trigger('editor', 'focus');
+        },
+
+        /**
+         * Destroy this controller if the model is destroyed.
+         */
+        onModelDestroy: function(model) {
+            if (this.view.model.attributes.id === model.attributes.id) {
+                this.destroy();
+            }
         }
 
     });

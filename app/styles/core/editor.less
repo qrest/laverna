@@ -19,7 +19,7 @@
 }
 
 .editor--form {
-    margin-top: 15px;
+    margin-top: 6px;
 }
 
 /**
@@ -31,7 +31,7 @@
     border-color  : rgb(217, 217, 217);
     border-top    : 1px solid rgb(229, 229, 229);
     border-bottom : 1px solid rgb(229, 229, 229);
-    padding       : 6px 0;
+    padding       : 0px 0;
 
     &.-fixed {
         &:extend(.navbar-static-top);
@@ -45,7 +45,7 @@
 .editor--input {
     overflow    : hidden;
     font-weight : 400;
-    font-size   : 14px;
+    font-size   : 1.1em;
     line-height : 20px;
     margin-left : 0;
     border      : none;
@@ -107,6 +107,7 @@
     // Main layout shouldn't have scrollbars
     .layout--body.-form {
         overflow: hidden;
+        height: 100%;
     }
 
     .navbar-form {
@@ -125,11 +126,11 @@
     .editor--layout {
         .make-pg-columns(5.94);
         position: absolute;
-        height: auto;
         top: 0;
         bottom: @navbar-height + 35px; // Leave room for footer
         overflow: hidden;
         background-color: #FFF;
+        height: 100%;
 
         &.-left {
             left: 0;
@@ -170,6 +171,7 @@
     @media (max-width: @pagedown-breakpoint) {
         // Fix the scrollbar
         .editor--layout {
+            height: 100%;
             bottom: 100px;
         }
 
@@ -182,6 +184,7 @@
         .-show,
         .editor--layout.-show,
         .editor--show--column {
+            height: 100%;
             display: block !important;
         }
     }
@@ -192,12 +195,13 @@
     position: relative;
 
     &:before {
-        font-size   : 14px;
+        font-size   : 13px;
         font-family : "fontello";
         content     : '\e808';
         position    : absolute;
-        top         : 6px;
-        left        : 7px;
+        top         : 8px;
+        left        : 8px;
+        color: #008d7c;
     }
     &:after {
         &:extend(.caret);
@@ -209,11 +213,13 @@
 }
 .editor--notebooks--list {
     max-width    : 180px;
-    padding-left : 20px;
+    padding-left : 24px;
 
     -webkit-appearance: none;
        -moz-appearance: none;
             appearance: none;
+  color: #008d7c;
+  font-family: sans-serif;
 }
 @media (max-width: 400px) {
     .editor--notebooks {
@@ -245,13 +251,17 @@
 }
 
 #editor--footer{
-	position:absolute;
-	bottom:0;
-	margin-left:auto;
+	position: fixed;
+	bottom: 0;
+	margin-left: auto;
 	padding-left: 15px;
-	overflow:visible;
-    font-size   : 14px;
+	padding-right: 15px;
+	overflow: visible;
+    font-size   : 16px;
     font-family : "fontello";
+    z-index: 999;
+    background: #efefef;
+    border-radius: 0.25em;
 
     -webkit-touch-callout: none;
     -webkit-user-select: none;

@@ -53,6 +53,7 @@ define([
                 'link:profile'  : this.getProfileLink,
                 'link:file'     : this.getFileLink,
                 'link'          : this.getLink,
+                'link:edit'     : this.getEditLink,
                 'get:current'   : this.getRoute,
             }, this);
         },
@@ -157,6 +158,13 @@ define([
 
             url += model ? '/show/' + model.id : '';
             return this.getProfileLink(url, options.profile);
+        },
+
+        getEditLink: function(model) {
+            
+            var url = model ? '/notes/edit/' + model.id : '';
+
+            return url;
         }
 
     });

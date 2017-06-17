@@ -33,6 +33,24 @@
 .list--item--favorite {
     width: 7%;
     &:extend(.pull-right);
+    display: none;
+}
+
+.list--item--favorite--show {
+    display: block;
+}
+
+.list--item--view {
+    float: right;
+    display: none;
+}
+
+.list--group:hover .list--item--view {
+    display: block;
+}
+
+.list--group:hover .list--item--favorite {
+    display: block;
 }
 
 .list--item--text {

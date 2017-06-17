@@ -41,7 +41,9 @@
 }
 
 .cm-header,
-.cm-strong:extend(strong) {}
+.cm-strong:extend(strong) {
+    font-weight: 400;
+}
 
 .cm-em {
     font-style: italic;
@@ -49,6 +51,14 @@
 
 .cm-strikethrough {
     text-decoration: line-through;
+}
+
+.cm-highlight {
+    background-color: #777777;
+    color: #fff;
+    padding: .2em .6em .3em;
+    border-radius: .25em;
+    text-align: center;
 }
 
 .cm-link {

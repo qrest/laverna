@@ -5,6 +5,22 @@
     </div>
 
     <ul class="nav navbar-nav navbar-right header--right">
+        <li>
+
+            <button class="note--edit btn header--btn btn-default " onclick="location.href='#{{link()}}'" type="button">
+                <i class="icon-eye"></i>
+                <span class="hidden-xs">{{ i18n('View') }}<span>
+            </button>
+            
+        </li>
+
+        <li>
+
+            <button class="note--remove btn header--btn btn-default ">
+                <i class="icon-trashed"></i>
+                <span class="hidden-xs"><% if (trash === 0) { %>{{i18n('Delete')}}<% } else { %> {{i18n('Forever')}}<% } %><span>
+            </button>
+        </li>
         <li class="dropdown">
             <button type="button" title="Mode" class="btn header--btn btn-default" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <i class="icon-fullscreen"></i> <b class="caret hidden-xs"></b>
@@ -48,7 +64,7 @@
         <form class="editor--form form-horizontal col-xs-12" action="#" method="post">
             <div class="form-group">
                 <input id="editor--input--title" class="form-control -borderless" name="title"
-                    type="text" value="{=cleanXSS(title, true)}" placeholder="{{ i18n('Title') }}" />
+                    type="text" value="{=cleanXSS(title, true)}" placeholder="{{ i18n('Title') }}" data-emojiable="true" data-emoji-input="unicode" />
             </div>
         </form>
     </div>
