@@ -1,4 +1,28 @@
-# Laverna - note taking web app
+# Laverna Revisited - note taking web app revisited
+
+**Demo**: To test a demo of Laverna Revisited, go to http://qrest.github.io/static-laverna
+
+This is my take on Hit star button on [Laverna][6], a note-taking app. I modified it for usability, visibility, and maximizing screen real-estate. Some changes are:
+
+* Edit-first workflow
+* Save button doesn't bring you back to Show view
+* Delete and View buttons in Edit view
+* Page-style edit container
+* View button in sidebar item
+* Sidebar buttons only appear on hover
+* Curved edges on menu items
+* Roboto and Office Code Pro fonts in Edit view
+
+Right now it's in initial phases and hacked together in places. There exist some small bugs, but it's very usable right now. I'll release it as V1.0 once it's to a point where I think it's mostly done.
+
+Some features I would love to add:
+
+* Emoji picker in button pane - Since emojis work fine in text already
+* Clickable links in Edit view
+
+*Note: No plans to PR right now because this is purely an exercise for me, but I would like for features I've included to make it to the upstream, because I feel the original app is great but unusable for real note-taking. My fork aims to fix that!*
+
+## About Laverna
 
 [![Join the chat at https://gitter.im/Laverna/laverna](https://badges.gitter.im/Laverna/laverna.svg)](https://gitter.im/Laverna/laverna?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
