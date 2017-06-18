@@ -2,7 +2,7 @@
 
 **Demo**: To test a demo of Laverna Revisited, go to http://qrest.github.io/static-laverna
 
-This is my take on Hit star button on [Laverna][6], a note-taking app. I modified it for usability, visibility, and maximizing screen real-estate. Some changes are:
+This is my take on [Laverna][6], a note-taking app. I modified it for usability, visibility, and maximizing screen real-estate. Some changes are:
 
 * Edit-first workflow
 * Save button doesn't bring you back to Show view
